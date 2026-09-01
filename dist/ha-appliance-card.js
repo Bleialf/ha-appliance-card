@@ -23,6 +23,7 @@ const T = {
     action_settings: "Controls",
     group_general: "General settings",
     compact: "Compact mode (hide icon)",
+    program_select: "Show the program as a dropdown (select entities only)",
     state_show_raw: "Always show the entity's raw text instead of the translated label",
     appliance_type: "Appliance type",
     type_auto: "Auto-detect", type_washer: "Washer", type_dryer: "Dryer", type_dishwasher: "Dishwasher",
@@ -120,6 +121,7 @@ const T = {
     action_settings: "Commandes",
     group_general: "R\u00e9glages g\u00e9n\u00e9raux",
     compact: "Mode compact (masquer l'ic\u00f4ne)",
+    program_select: "Afficher le programme sous forme de liste (entit\u00e9s select uniquement)",
     state_show_raw: "Toujours afficher le texte brut de l'entit\u00e9 plut\u00f4t que le libell\u00e9 traduit",
     appliance_type: "Type d'appareil",
     type_auto: "D\u00e9tection auto", type_washer: "Lave-linge", type_dryer: "S\u00e8che-linge", type_dishwasher: "Lave-vaisselle",
@@ -217,6 +219,7 @@ const T = {
     action_settings: "\u0423\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0438\u0435",
     group_general: "\u041e\u0431\u0449\u0438\u0435 \u043d\u0430\u0441\u0442\u0440\u043e\u0439\u043a\u0438",
     compact: "\u041a\u043e\u043c\u043f\u0430\u043a\u0442\u043d\u044b\u0439 \u0440\u0435\u0436\u0438\u043c (\u0441\u043a\u0440\u044b\u0442\u044c \u0437\u043d\u0430\u0447\u043e\u043a)",
+    program_select: "\u041f\u043e\u043a\u0430\u0437\u044b\u0432\u0430\u0442\u044c \u043f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0443 \u0441\u043f\u0438\u0441\u043a\u043e\u043c (\u0442\u043e\u043b\u044c\u043a\u043e select)",
     state_show_raw: "\u0412\u0441\u0435\u0433\u0434\u0430 \u043f\u043e\u043a\u0430\u0437\u044b\u0432\u0430\u0442\u044c \u043d\u0435\u043e\u0431\u0440\u0430\u0431\u043e\u0442\u0430\u043d\u043d\u044b\u0439 \u0442\u0435\u043a\u0441\u0442 \u0441\u0443\u0449\u043d\u043e\u0441\u0442\u0438 \u0432\u043c\u0435\u0441\u0442\u043e \u043f\u0435\u0440\u0435\u0432\u0435\u0434\u0451\u043d\u043d\u043e\u0433\u043e \u043d\u0430\u0437\u0432\u0430\u043d\u0438\u044f",
     appliance_type: "\u0422\u0438\u043f \u043f\u0440\u0438\u0431\u043e\u0440\u0430",
     type_auto: "\u0410\u0432\u0442\u043e\u043e\u043f\u0440\u0435\u0434\u0435\u043b\u0435\u043d\u0438\u0435", type_washer: "\u0421\u0442\u0438\u0440\u0430\u043b\u044c\u043d\u0430\u044f \u043c\u0430\u0448\u0438\u043d\u0430", type_dryer: "\u0421\u0443\u0448\u0438\u043b\u044c\u043d\u0430\u044f \u043c\u0430\u0448\u0438\u043d\u0430", type_dishwasher: "\u041f\u043e\u0441\u0443\u0434\u043e\u043c\u043e\u0435\u0447\u043d\u0430\u044f \u043c\u0430\u0448\u0438\u043d\u0430",
@@ -314,6 +317,7 @@ const T = {
     action_settings: "Steuerung",
     group_general: "Allgemeine Einstellungen",
     compact: "Kompaktmodus (Symbol ausblenden)",
+    program_select: "Programm als Auswahlliste anzeigen (nur select-Entit\u00e4ten)",
     state_show_raw: "Immer den rohen Entit\u00e4tstext statt der \u00fcbersetzten Bezeichnung anzeigen",
     appliance_type: "Ger\u00e4tetyp",
     type_auto: "Automatisch erkennen", type_washer: "Waschmaschine", type_dryer: "Trockner", type_dishwasher: "Geschirrsp\u00fcler",
@@ -411,6 +415,7 @@ const T = {
     action_settings: "Controles",
     group_general: "Ajustes generales",
     compact: "Modo compacto (ocultar icono)",
+    program_select: "Mostrar el programa como lista desplegable (solo entidades select)",
     state_show_raw: "Mostrar siempre el texto bruto de la entidad en lugar de la etiqueta traducida",
     appliance_type: "Tipo de electrodom\u00e9stico",
     type_auto: "Detecci\u00f3n autom\u00e1tica", type_washer: "Lavadora", type_dryer: "Secadora", type_dishwasher: "Lavavajillas",
@@ -508,6 +513,7 @@ const T = {
     action_settings: "Comandi",
     group_general: "Impostazioni generali",
     compact: "Modalit\u00e0 compatta (nascondi icona)",
+    program_select: "Mostra il programma come elenco a discesa (solo entit\u00e0 select)",
     state_show_raw: "Mostra sempre il testo grezzo dell'entit\u00e0 invece dell'etichetta tradotta",
     appliance_type: "Tipo di elettrodomestico",
     type_auto: "Rilevamento automatico", type_washer: "Lavatrice", type_dryer: "Asciugatrice", type_dishwasher: "Lavastoviglie",
@@ -605,6 +611,7 @@ const T = {
     action_settings: "Bediening",
     group_general: "Algemene instellingen",
     compact: "Compacte modus (pictogram verbergen)",
+    program_select: "Programma als keuzelijst tonen (alleen select-entiteiten)",
     state_show_raw: "Altijd de ruwe tekst van de entiteit tonen in plaats van het vertaalde label",
     appliance_type: "Type apparaat",
     type_auto: "Automatisch detecteren", type_washer: "Wasmachine", type_dryer: "Droger", type_dishwasher: "Vaatwasser",
@@ -702,6 +709,7 @@ const T = {
     action_settings: "Controlos",
     group_general: "Defini\u00e7\u00f5es gerais",
     compact: "Modo compacto (ocultar \u00edcone)",
+    program_select: "Mostrar o programa como lista pendente (apenas entidades select)",
     state_show_raw: "Mostrar sempre o texto bruto da entidade em vez do r\u00f3tulo traduzido",
     appliance_type: "Tipo de eletrodom\u00e9stico",
     type_auto: "Dete\u00e7\u00e3o autom\u00e1tica", type_washer: "M\u00e1quina de lavar", type_dryer: "Secadora", type_dishwasher: "M\u00e1quina de lavar loi\u00e7a",
@@ -799,6 +807,7 @@ const T = {
     action_settings: "Styrning",
     group_general: "Allm\u00e4nna inst\u00e4llningar",
     compact: "Kompakt l\u00e4ge (d\u00f6lj ikon)",
+    program_select: "Visa programmet som en rullgardinslista (endast select-entiteter)",
     state_show_raw: "Visa alltid entitetens r\u00e5data ist\u00e4llet f\u00f6r den \u00f6versatta etiketten",
     appliance_type: "Typ av apparat",
     type_auto: "Automatisk identifiering", type_washer: "Tv\u00e4ttmaskin", type_dryer: "Torktumlare", type_dishwasher: "Diskmaskin",
@@ -896,6 +905,7 @@ const T = {
     action_settings: "Styring",
     group_general: "Generelle innstillinger",
     compact: "Kompakt modus (skjul ikon)",
+    program_select: "Vis programmet som nedtrekksliste (kun select-entiteter)",
     state_show_raw: "Vis alltid entitetens r\u00e5 tekst i stedet for den oversatte etiketten",
     appliance_type: "Apparattype",
     type_auto: "Automatisk gjenkjenning", type_washer: "Vaskemaskin", type_dryer: "T\u00f8rketrommel", type_dishwasher: "Oppvaskmaskin",
@@ -993,6 +1003,7 @@ const T = {
     action_settings: "Betjening",
     group_general: "Generelle indstillinger",
     compact: "Kompakt tilstand (skjul ikon)",
+    program_select: "Vis programmet som rullemenu (kun select-enheder)",
     state_show_raw: "Vis altid enhedens r\u00e5 tekst i stedet for den oversatte etiket",
     appliance_type: "Apparattype",
     type_auto: "Automatisk registrering", type_washer: "Vaskemaskine", type_dryer: "T\u00f8rretumbler", type_dishwasher: "Opvaskemaskine",
@@ -1090,6 +1101,7 @@ const T = {
     action_settings: "Sterowanie",
     group_general: "Ustawienia og\u00f3lne",
     compact: "Tryb kompaktowy (ukryj ikon\u0119)",
+    program_select: "Poka\u017c program jako list\u0119 rozwijan\u0105 (tylko encje select)",
     state_show_raw: "Zawsze pokazuj surowy tekst encji zamiast przet\u0142umaczonej etykiety",
     appliance_type: "Typ urz\u0105dzenia",
     type_auto: "Wykrywanie automatyczne", type_washer: "Pralka", type_dryer: "Suszarka", type_dishwasher: "Zmywarka",
@@ -1187,6 +1199,7 @@ const T = {
     action_settings: "\u63a7\u5236\u9879",
     group_general: "\u57fa\u7840\u8bbe\u7f6e",
     compact: "\u7cbe\u7b80\u6a21\u5f0f (\u9690\u85cf\u56fe\u6807)",
+    program_select: "\u4ee5\u4e0b\u62c9\u5217\u8868\u663e\u793a\u7a0b\u5e8f\uff08\u4ec5\u9650 select \u5b9e\u4f53\uff09",
     state_show_raw: "\u663e\u793a\u5b9e\u4f53\u539f\u59cb\u72b6\u6001\u4fe1\u606f\u800c\u4e0d\u662f\u8f6c\u4e49\u540e\u6587\u672c",
     appliance_type: "\u8bbe\u5907\u7c7b\u578b",
     type_auto: "\u81ea\u52a8\u68c0\u6d4b", type_washer: "\u6d17\u8863\u673a", type_dryer: "\u5e72\u8863\u673a", type_dishwasher: "\u6d17\u7897\u673a",
@@ -3010,6 +3023,8 @@ class ApplianceCard extends HTMLElement {
       throw new Error("ha-appliance-card: 'state_entity' is required");
     }
     this._config = config;
+    // config changed: force the next set hass through _render
+    this._lastSignature = undefined;
     this._runStartSeconds = null;
     this._prevNormState = null;
     if (!this._root) {
@@ -3052,8 +3067,63 @@ class ApplianceCard extends HTMLElement {
     return document.createElement("ha-appliance-card-editor");
   }
 
+  // Entities this card actually reads: every *_entity config key, plus the
+  // info_entities list.
+  _watchedEntityIds() {
+    const cfg = this._config || {};
+    const ids = [];
+    for (const [k, v] of Object.entries(cfg)) {
+      if (k.endsWith("_entity") && typeof v === "string" && v) ids.push(v);
+    }
+    if (Array.isArray(cfg.info_entities)) {
+      for (const e of cfg.info_entities) {
+        const id = typeof e === "string" ? e : e && e.entity;
+        if (id) ids.push(id);
+      }
+    }
+    return ids;
+  }
+
+  // A cheap fingerprint of everything the rendered output depends on.
+  // last_changed rather than last_updated: the latter also moves on attribute
+  // churn that does not affect us. alerts_entity is the exception, since its
+  // attributes *are* its content.
+  _stateSignature(hass) {
+    if (!hass || !this._config) return "";
+    const parts = [hass.language || "", this._config.alerts_entity ? "a" : ""];
+    for (const id of this._watchedEntityIds()) {
+      const st = hass.states ? hass.states[id] : null;
+      if (!st) { parts.push(id + "=-"); continue; }
+      parts.push(id + "=" + st.state + "@" + st.last_changed);
+      if (id === this._config.alerts_entity) {
+        parts.push(JSON.stringify(st.attributes || {}));
+      }
+      if (domainOf(id) === "select") {
+        parts.push(JSON.stringify(st.attributes && st.attributes.options));
+      }
+    }
+    return parts.join("|");
+  }
+
+  // Wall-clock start of the current spin, so a re-render can resume the
+  // animation where it left off rather than from zero.
+  _animOffsetSeconds(spinning) {
+    if (!spinning) { this._spinStart = null; return 0; }
+    if (!this._spinStart) this._spinStart = Date.now();
+    return -((Date.now() - this._spinStart) / 1000);
+  }
+
   set hass(hass) {
+    // _render rebuilds the whole subtree through innerHTML, which restarts
+    // every CSS animation from zero. Home Assistant calls this setter on any
+    // state change anywhere in the system, so on a busy instance the drum
+    // never gets past a few degrees before being reset. Re-render only when
+    // something this card displays has actually changed.
+    const sig = this._stateSignature(hass);
+    const first = this._lastSignature === undefined;
     this._hass = hass;
+    if (!first && sig && sig === this._lastSignature) return;
+    this._lastSignature = sig;
     this._render();
   }
 
@@ -3152,10 +3222,22 @@ class ApplianceCard extends HTMLElement {
 
     // Program
     let programText = null;
+    let programSelect = null;
     if (cfg.program_entity) {
       const pst = stateObj(hass, cfg.program_entity);
       if (pst && !["unknown", "unavailable"].includes(pst.state)) {
         programText = cfg.program_format === "raw" ? pst.state : cleanProgramName(pst.state);
+      }
+      // A select entity can be driven, not just read. Opt-in via
+      // program_select: true, so existing configs keep the read-only text.
+      if (cfg.program_select && pst && domainOf(cfg.program_entity) === "select" &&
+          Array.isArray(pst.attributes && pst.attributes.options) &&
+          pst.attributes.options.length) {
+        programSelect = {
+          entity: cfg.program_entity,
+          current: pst.state,
+          options: pst.attributes.options,
+        };
       }
     }
 
@@ -3670,9 +3752,11 @@ class ApplianceCard extends HTMLElement {
 
     const spinning = isActiveState(norm);
 
+    const animOffset = this._animOffsetSeconds(spinning);
+
     const styleTag = `
       <style>
-        :host { font-size: 16px; }
+        :host { font-size: 16px; --anim-offset: ${animOffset}s; }
         ha-card { display: block; padding: 16px; position: relative; }
         .conn-badge {
           position: absolute; top: 10px; right: 12px;
@@ -3689,10 +3773,23 @@ class ApplianceCard extends HTMLElement {
         .light-badge.on { color: #ffb300; }
         .top { display: flex; flex-direction: column; align-items: center; text-align: center; cursor: pointer; }
         .machine { position: relative; width: 96px; height: 108px; margin: 0 auto 8px; }
+        /* Any re-render replaces these nodes and restarts their animations at
+           zero. A negative delay equal to the time already spent spinning
+           resumes them mid-cycle instead, so a wattage reading ticking once a
+           second no longer pins the drum to the first few degrees. */
+        .machine.spinning * { animation-delay: var(--anim-offset, 0s) !important; }
         ${illustrationCss(applianceType, color)}
         .name { font-size: 1.2em; font-weight: 500; color: var(--primary-text-color, #1c1c1c); }
         .state-line { font-size: 1.05em; color: ${color}; margin-top: 2px; }
         .info-lines { margin-top: 12px; display: flex; flex-direction: column; gap: 8px; }
+        .program-select {
+          margin-left: auto; max-width: 60%;
+          font: inherit; color: var(--primary-text-color);
+          background: var(--secondary-background-color, rgba(127,127,127,0.12));
+          border: 1px solid var(--divider-color, rgba(127,127,127,0.3));
+          border-radius: 6px; padding: 2px 6px; cursor: pointer;
+        }
+        .program-select:focus-visible { outline: 2px solid var(--primary-color); }
         .info-line {
           display: flex; align-items: center; gap: 8px;
           font-size: 1em; color: var(--primary-text-color, #1c1c1c); text-align: left;
@@ -3742,7 +3839,11 @@ class ApplianceCard extends HTMLElement {
     };
 
     const lines = [];
-    if (programText) lines.push({ icon: "mdi:tag-outline", label: t(hass, "program"), value: programText });
+    if (programSelect) {
+      lines.push({ icon: "mdi:tag-outline", label: t(hass, "program"), value: null, select: programSelect });
+    } else if (programText) {
+      lines.push({ icon: "mdi:tag-outline", label: t(hass, "program"), value: programText });
+    }
     infoEntities.forEach((e) => {
       lines.push({
         icon: e.icon || e.st.attributes.icon || "mdi:information-outline",
@@ -3774,7 +3875,13 @@ class ApplianceCard extends HTMLElement {
           .map((l) => ({ ...l, open: !!l.entity && entityUsable(hass, l.entity) }))
           .map(
             (l) =>
-              `<div class="info-line ${l.warn ? "warn" : ""}${l.open ? " clickable" : ""}"${l.open ? ` data-more="${esc(l.entity)}"` : ""}><ha-icon icon="${esc(l.icon)}"></ha-icon><span class="label">${esc(l.label)}</span>${l.value ? `<span>${esc(l.value)}</span>` : ""}</div>`
+              `<div class="info-line ${l.warn ? "warn" : ""}${l.open ? " clickable" : ""}"${l.open ? ` data-more="${esc(l.entity)}"` : ""}><ha-icon icon="${esc(l.icon)}"></ha-icon><span class="label">${esc(l.label)}</span>${
+                l.select
+                  ? `<select class="program-select" data-select="${esc(l.select.entity)}">${l.select.options
+                      .map((o) => `<option value="${esc(o)}"${o === l.select.current ? " selected" : ""}>${esc(o)}</option>`)
+                      .join("")}</select>`
+                  : l.value ? `<span>${esc(l.value)}</span>` : ""
+              }</div>`
           )
           .join("")}</div>`
       : "";
@@ -3844,6 +3951,20 @@ class ApplianceCard extends HTMLElement {
         this._call(el.getAttribute("data-entity"));
       });
     });
+    this._root.querySelectorAll(".program-select").forEach((el) => {
+      // Stop clicks reaching the info-line / card handlers underneath.
+      el.addEventListener("click", (ev) => ev.stopPropagation());
+      el.addEventListener("change", (ev) => {
+        ev.stopPropagation();
+        const entityId = el.getAttribute("data-select");
+        if (this._hass && entityId) {
+          this._hass.callService("select", "select_option", {
+            entity_id: entityId,
+            option: el.value,
+          });
+        }
+      });
+    });
     this._root.querySelectorAll(".info-line[data-more]").forEach((el) => {
       el.addEventListener("click", (ev) => {
         ev.stopPropagation();
@@ -3874,7 +3995,7 @@ const SECTIONS = [
         { value: "clean", label: t(hass, "program_format_clean") },
         { value: "raw", label: t(hass, "program_format_raw") },
       ],
-    }) },
+    }) + c._row("program_select", "program_select", { type: "checkbox" }) },
   { field: "remaining_time_entity", types: CYCLE_TYPES, labelKey: "section_remaining", includeDomains: ["sensor", "input_number"], extra: (c, hass) => c._row("remaining_time_unit", "remaining_time_unit", {
       type: "select",
       options: [

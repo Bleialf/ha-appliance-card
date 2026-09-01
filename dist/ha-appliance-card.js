@@ -3796,8 +3796,8 @@ class ApplianceCard extends HTMLElement {
 
     const styleTag = `
       <style>
-        :host { display: block; height: 100%; font-size: 16px; --anim-offset: ${animOffset}s; }
-        ha-card { display: block; padding: 16px; position: relative; height: 100%; box-sizing: border-box; }
+        :host { font-size: 16px; --anim-offset: ${animOffset}s; }
+        ha-card { display: block; padding: 16px; position: relative; }
         .conn-badge {
           position: absolute; top: 10px; right: 12px;
           --mdc-icon-size: 18px; color: var(--secondary-text-color, #767676);

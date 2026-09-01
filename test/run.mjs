@@ -790,24 +790,6 @@ check('grille : automatique sur un frigo', grid({ appliance_type: 'fridge', powe
 check('grille : aucun plancher de hauteur', gRich.min_rows, undefined);
 check('grille : aucun plafond de hauteur', gRich.max_rows, undefined);
 
-// rows: "auto" is what the card asks for, but a dashboard can still pin a row
-// count by hand, and the sizing UI writes exactly that. When it does, the grid
-// reserves a cell of that height and the card has to fill it: without a height
-// the ha-card keeps its natural size and sits at the top of the cell, so six
-// cards pinned to the same rows still render at six different heights, which
-// is the ragged look the pinning was meant to fix.
-const layoutCss = markup(build({ appliance_type: 'coffee', state_entity: 'sensor.w' },
-  { 'sensor.w': { state: 'on', attributes: {} } }).card);
-check('grille : la carte remplit la cellule qu\'on lui reserve',
-  /ha-card \{[^}]*height: 100%/.test(layoutCss), true);
-check('grille : le padding compte dans cette hauteur',
-  /ha-card \{[^}]*box-sizing: border-box/.test(layoutCss), true);
-// The 100% above resolves against the host, not against the section: the grid
-// sizes the custom element, so the host needs the height too or the rule has
-// nothing to measure against.
-check('grille : l\'hote porte la hauteur aussi',
-  /:host \{ display: block; height: 100%/.test(layoutCss), true);
-
 // ── Fridge and kettle ────────────────────────────────────────────────────────
 // The fridge is the one type with no cycle: it never stops, so "running" is
 // true of it every hour of its life and says nothing. Everything below tests

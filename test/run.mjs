@@ -1249,6 +1249,91 @@ check('programme : raw ne touche a rien',
 check('programme : un nombre decimal n\'est pas un enum', progName('1.5 kg'), '1.5 kg');
 check('programme : deux segments ne suffisent pas a en faire un', progName('Auto40.5'), 'Auto 40.5');
 
+// Home Assistant's own Home Connect integration reports the same enum in
+// snake_case, where the dotted pattern above matches nothing and the name
+// reached the card whole: "dishcare_dishwasher_program_eco_50".
+check('programme : l\'enum Home Connect en snake_case est nettoye',
+  progName('dishcare_dishwasher_program_eco_50'), 'Eco 50');
+check('programme : un enum snake_case a rallonge aussi',
+  progName('cooking_oven_program_heating_mode_hot_air'), 'Heating Mode Hot Air');
+check('programme : la cafetiere en snake_case de meme',
+  progName('consumerproducts_coffeemaker_program_beverage_espresso'), 'Beverage Espresso');
+// Only the namespace goes. A bare snake_case value keeps every word.
+check('programme : sans namespace, le nom reste entier',
+  progName('eco_50'), 'Eco 50');
+// A name that already carries its own capitals must not be re-cased.
+check('programme : les majuscules existantes sont respectees',
+  progName('Baumwolle Schranktrocken+'), 'Baumwolle Schranktrocken+');
+check('programme : raw ne touche pas au snake_case non plus',
+  progName('dishcare_dishwasher_program_eco_50', { program_format: 'raw' }),
+  'dishcare_dishwasher_program_eco_50');
+
+// Home Assistant ships the translated label for an enum option. When the core
+// is new enough to expose formatEntityState, that label wins over anything the
+// card can derive on its own, because it is what the rest of the UI shows.
+function progNameVia(formatEntityState, raw, extra) {
+  const states = { 'sensor.w': { state: 'Running', attributes: {} },
+                   'sensor.p': { state: raw, attributes: {} } };
+  const c = new Card();
+  c.setConfig({ type: 'custom:ha-appliance-card', appliance_type: 'washer',
+                state_entity: 'sensor.w', program_entity: 'sensor.p', ...extra });
+  c._hass = { ...HASS(states), formatEntityState };
+  c._render();
+  return infoLine(markup(c), 'Program');
+}
+
+check('programme : le libelle traduit par Home Assistant est prefere',
+  progNameVia(() => 'Eco 50 \u00b0C', 'dishcare_dishwasher_program_eco_50'), 'Eco 50 \u00b0C');
+// An untranslated option comes back unchanged; that is not a label, so the
+// card's own cleanup has to take over rather than print the enum.
+check('programme : sans traduction, le nettoyage local reprend la main',
+  progNameVia((st, v) => v, 'dishcare_dishwasher_program_eco_50'), 'Eco 50');
+// A core that throws must not take the card down with it.
+check('programme : une erreur du core ne casse pas la carte',
+  progNameVia(() => { throw new Error('boom'); }, 'dishcare_dishwasher_program_eco_50'), 'Eco 50');
+check('programme : raw ignore meme le libelle traduit',
+  progNameVia(() => 'Eco 50 \u00b0C', 'dishcare_dishwasher_program_eco_50', { program_format: 'raw' }),
+  'dishcare_dishwasher_program_eco_50');
+
+// ── The program dropdown ─────────────────────────────────────────────────────
+// program_select renders the select entity's options. Those options are the
+// raw enum, which select.select_option needs, but which nobody can read: the
+// value submitted and the text shown have to part company.
+
+/** Each rendered <option> as "value=text". */
+const progOptions = h => [...h.matchAll(/<option value="([^"]*)"[^>]*>([^<]*)<\/option>/g)]
+  .map(m => `${m[1]}=${m[2]}`);
+
+const DISH_OPTS = ['dishcare_dishwasher_program_eco_50', 'dishcare_dishwasher_program_auto_45_65'];
+const dishDropdown = (extra, formatEntityState) => {
+  const states = {
+    'sensor.d': { state: 'run', attributes: {} },
+    'select.p': { state: DISH_OPTS[0], attributes: { options: DISH_OPTS } },
+  };
+  const c = new Card();
+  c.setConfig({ type: 'custom:ha-appliance-card', appliance_type: 'dishwasher',
+                state_entity: 'sensor.d', program_entity: 'select.p',
+                program_select: true, ...extra });
+  c._hass = formatEntityState ? { ...HASS(states), formatEntityState } : HASS(states);
+  c._render();
+  return markup(c);
+};
+
+check('liste : les options sont lisibles, pas l\'enum brut',
+  progOptions(dishDropdown()).join(','),
+  ['dishcare_dishwasher_program_eco_50=Eco 50',
+   'dishcare_dishwasher_program_auto_45_65=Auto 45 65'].join(','));
+check('liste : le libelle traduit sert la aussi',
+  progOptions(dishDropdown({}, (st, v) => v.endsWith('eco_50') ? 'Eco 50 \u00b0C' : 'Auto 45-65 \u00b0C')).join(','),
+  ['dishcare_dishwasher_program_eco_50=Eco 50 \u00b0C',
+   'dishcare_dishwasher_program_auto_45_65=Auto 45-65 \u00b0C'].join(','));
+check('liste : l\'option courante reste selectionnee',
+  /<option value="dishcare_dishwasher_program_eco_50" selected>/.test(dishDropdown()), true);
+check('liste : raw laisse l\'enum visible',
+  progOptions(dishDropdown({ program_format: 'raw' })).join(','),
+  ['dishcare_dishwasher_program_eco_50=dishcare_dishwasher_program_eco_50',
+   'dishcare_dishwasher_program_auto_45_65=dishcare_dishwasher_program_auto_45_65'].join(','));
+
 // ── Per-card language ────────────────────────────────────────────────────────
 // Someone running Home Assistant in English so that error messages match what
 // they find online may still want the card in their own language. Requested in

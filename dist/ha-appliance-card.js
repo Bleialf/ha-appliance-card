@@ -1559,7 +1559,13 @@ function cleanProgramName(raw) {
   const parts = String(raw).split(/\s+Pr\s+/i);
   let name = parts.length > 1 ? parts[1] : parts[0];
   if (PROGRAM_ENUM.test(name)) name = name.slice(name.lastIndexOf(".") + 1);
-  return name
+  // Home Connect through Home Assistant's own integration reports the same
+  // enum in snake_case ("dishcare_dishwasher_program_eco_50"), which the
+  // dotted pattern above cannot match. Everything up to "_program_" is the
+  // namespace, exactly as with the dotted form.
+  const snake = /^[a-z0-9]+_[a-z0-9]+_program_(.+)$/.exec(name);
+  if (snake) name = snake[1];
+  const out = name
     .replace(/([a-z])([A-Z])/g, "$1 $2")
     // Vendors run the temperature and the duration into the name, where there
     // is no case boundary to split on: Auto40, Rapid20Min, Eco40-60.
@@ -1568,6 +1574,34 @@ function cleanProgramName(raw) {
     .replace(/_/g, " ")
     .replace(/\s+/g, " ")
     .trim();
+  // A snake_case enum arrives entirely in lower case, which reads as a shout
+  // of one next to the card's other lines. Only a value that actually came in
+  // as a snake_case token is re-cased: a name that carries its own capitals
+  // ("Auto 40") keeps them, and a plain reading like "1.5 kg" is not a program
+  // name to capitalise.
+  const wasSnake = name.includes("_");
+  return wasSnake && out === out.toLowerCase()
+    ? out.replace(/\b[a-z]/g, (c) => c.toUpperCase())
+    : out;
+}
+
+// Home Assistant ships the translated label for an enum option, and
+// formatEntityState is how the frontend itself renders one. Prefer it over any
+// string mangling of our own: it reaches the unit and the wording the rest of
+// the interface uses, and it follows the user's language. Older cores, and
+// entities the integration has not translated, fall back to the local cleanup.
+function programLabel(hass, st, raw, format) {
+  if (!raw) return raw;
+  if (format === "raw") return raw;
+  if (st && hass && typeof hass.formatEntityState === "function") {
+    try {
+      const label = hass.formatEntityState(st, raw);
+      if (label && label !== raw) return label;
+    } catch (e) {
+      /* fall through to the local cleanup */
+    }
+  }
+  return cleanProgramName(raw);
 }
 
 function activeAlerts(hass, entityId) {
@@ -3226,7 +3260,7 @@ class ApplianceCard extends HTMLElement {
     if (cfg.program_entity) {
       const pst = stateObj(hass, cfg.program_entity);
       if (pst && !["unknown", "unavailable"].includes(pst.state)) {
-        programText = cfg.program_format === "raw" ? pst.state : cleanProgramName(pst.state);
+        programText = programLabel(hass, pst, pst.state, cfg.program_format);
       }
       // A select entity can be driven, not just read. Opt-in via
       // program_select: true, so existing configs keep the read-only text.
@@ -3236,7 +3270,13 @@ class ApplianceCard extends HTMLElement {
         programSelect = {
           entity: cfg.program_entity,
           current: pst.state,
-          options: pst.attributes.options,
+          // The value is what select.select_option needs; the label is what a
+          // person can read. Keeping both means the dropdown stops showing
+          // "dishcare_dishwasher_program_eco_50" without breaking the call.
+          options: pst.attributes.options.map((o) => ({
+            value: o,
+            label: programLabel(hass, pst, o, cfg.program_format),
+          })),
         };
       }
     }
@@ -3878,7 +3918,7 @@ class ApplianceCard extends HTMLElement {
               `<div class="info-line ${l.warn ? "warn" : ""}${l.open ? " clickable" : ""}"${l.open ? ` data-more="${esc(l.entity)}"` : ""}><ha-icon icon="${esc(l.icon)}"></ha-icon><span class="label">${esc(l.label)}</span>${
                 l.select
                   ? `<select class="program-select" data-select="${esc(l.select.entity)}">${l.select.options
-                      .map((o) => `<option value="${esc(o)}"${o === l.select.current ? " selected" : ""}>${esc(o)}</option>`)
+                      .map((o) => `<option value="${esc(o.value)}"${o.value === l.select.current ? " selected" : ""}>${esc(o.label)}</option>`)
                       .join("")}</select>`
                   : l.value ? `<span>${esc(l.value)}</span>` : ""
               }</div>`
